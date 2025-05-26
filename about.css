@@ -1,0 +1,323 @@
+/* Global Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #100103;
+    color: #f8f8f7;
+    line-height: 1.6;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    overflow: hidden;
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-background {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+.hero-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 800px;
+    margin: 0 auto;
+    z-index: 1;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+}
+
+/* About Section Styles */
+.about-section {
+    display: flex;
+    align-items: flex-start;
+    padding: 60px 20px;
+    margin-top: 80px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.about-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    gap: 30px;
+}
+
+/* Set both image and text to 50% */
+.about-image {
+    width: 50%; /* Changed to 50% */
+    max-width: 500px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.text-content {
+    width: 50%; /* Changed to 50% */
+    padding: 0 20px;
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .about-section {
+        flex-direction: column; /* Stack vertically on small screens */
+    }
+
+    .about-image,
+    .text-content {
+        width: 100%; /* Make them full width on smaller screens */
+        transform: translateX(0); /* Reset transform for animations */
+    }
+}
+
+
+.text-content h2 {
+    color: #cf7832;
+}
+
+.reverse {
+    flex-direction: column; /* Change direction for smaller screens */
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 40px 10px; /* Adjust padding */
+    }
+
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-image,
+    .text-content {
+        width: 100%;
+        transform: translateX(0);
+    }
+}
+
+/* Animation Keyframes */
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Animation Classes */
+.animate-left {
+    animation: slideInLeft 2s forwards;
+}
+
+.animate-right {
+    animation: slideInRight 2s forwards;
+}
+
+/* Timeline Section */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 0 20px;
+}
+
+.container {
+    padding: 10px 60px;
+    position: relative;
+    width: calc(50% - 40px);
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.appear {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.year-circle {
+    width: 60px;
+    height: 60px;
+    background: radial-gradient(circle at top left, #ff914d, #cf7832);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 1.3em;
+    font-weight: 400;
+    font-family: 'Bebas Neue', sans-serif;
+    position: absolute;
+    right: -30px;
+    top: 25px;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.year-circle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+.right-container .year-circle {
+    left: -30px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%; /* Full width on smaller screens */
+        text-align: center;
+        padding: 20px 0; /* Adjust padding for smaller screens */
+    }
+
+    .year-circle {
+        position: static;
+        margin: 10px auto; /* Center the year circle */
+    }
+
+    .left-container-arrow,
+    .right-container-arrow {
+        display: none; /* Hide arrows on smaller screens */
+    }
+}
+
+.timeline:after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    height: 100%;
+    background: #fff;
+    top: 0;
+    left: calc(50% - 3px);
+    z-index: 1;
+    animation: moveline 18s linear forwards;
+}
+
+/* Position Adjustments */
+.text-box {
+    padding: 20px 30px;
+    background: #fff;
+    position: relative;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 15px;
+    color: #000;
+}
+
+.left-container {
+    left: -1%;
+}
+
+.right-container {
+    left: 53%;
+}
+
+@media (max-width: 768px) {
+    .left-container,
+    .right-container {
+        left: 0; /* Reset left for smaller screens */
+    }
+}
+
+.text-box h2 {
+    font-weight: 600;
+}
+
+.journey-title {
+    text-align: center;
+    color: #cf7832;
+    margin: 40px 0;
+    font-size: 2em;
+}
+
+/* Scroll and Animation Effects */
+@keyframes moveline {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 100%;
+    }
+}
+
+.container:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.container:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.container:nth-child(3) {
+    animation-delay: 2s;
+}
+
+.container:nth-child(4) {
+    animation-delay: 3s;
+}
+
+.container:nth-child(5) {
+    animation-delay: 4s;
+}
+
+.container:nth-child(6) {
+    animation-delay: 5s;
+}

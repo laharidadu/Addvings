@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADD VINGS - About Us</title>
+    <link rel="stylesheet" href="about.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- Placeholder for header -->
+ <div id="header"></div> 
+ 
+ <section class="hero">
+    <video autoplay loop muted class="video-background">
+        <source src="/images/v1.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="hero-content">
+        <h1>About Us</h1>
+        <p>Committed to Exceptional Design and Meaningful Impact.</p>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about-us">
+    <div class="about-content">
+        <img src="images/t4.png" alt="About Image 1" class="about-image">
+        <div class="text-content">
+            <h2>About Us</h2>
+            <p>Welcome to ADD VINGS!!!   ADD VINGS Global is a leading exhibition stand builder in India, specializing in custom designs and event solutions. We take pride in delivering exceptional craftsmanship and seamless project management for businesses worldwide. It started with a dream, an ambition, and a determination to build better customer experiences. A vision to fulfill or a righteous path to emulate both our clients and team members. We were built with a strong foundation of team members and happy customers. Almost instantly, ADD VINGS became a prominent name in its business segment, but as every entrepreneur sticks to their dream, we always wanted to push our company to more prosperous milestones. More than being a global player, We always perceived our company as a unit that could make a difference with its quality and competitively priced products.</p>
+        </div>
+    </div>
+</section>
+
+<section class="about-section reverse" id="our-vision">
+    <div class="about-content">
+        <div class="text-content">
+            <h2>Our Mission</h2>
+            <p>At ADD VINGS, our mission is to redefine industry standards by delivering unparalleled craftsmanship and comprehensive project management solutions tailored to meet the unique needs of our clients worldwide. We strive to create exceptional customer experiences through innovation, quality, and dedication, ensuring that every project reflects our commitment to excellence. Our vision is rooted in a collaborative spirit, empowering our team members to take ownership of their work while fostering lasting relationships with our clients. By continuously pursuing new milestones and embracing challenges, we aim to be more than just a global player; we aspire to be a transformative force that enhances the value and impact of every project we undertake.</p>
+        </div>
+        <img src="images/t1.png" alt="About Image 2" class="about-image">
+    </div>
+</section>
+
+
+<h3 class="journey-title">Our Journey</h3>
+
+
+
+<div class="timeline">
+
+    <div class="container left-container">
+        <div class="year-circle">2006</div>
+        <div class="text-box">
+            <h2>Establishment</h2>
+            <small>2006</small>
+            <p>Founded by a passionate team of event enthusiasts with a vision to redefine event planning.</p>
+            <span class="left-container-arrow"></span>
+        </div>
+    </div>    
+
+    <div class="container right-container">
+        <div class="year-circle">2007</div>
+        <div class="text-box">
+            <h2>First Major Event</h2>
+            <small>2007</small>
+            <p>Successfully organized our first large-scale event, receiving rave reviews and referrals.</p>
+            <span class="right-container-arrow"></span>
+        </div>
+    </div>
+
+    <div class="container left-container">
+        <div class="year-circle">20011</div>
+        <div class="text-box">
+            <h2>Expansion of Services</h2>
+            <small>2011</small>
+            <p>Expanded our business to include Ad Design, Trade Shows, Event Coordination, Event Planning.</p>
+            <span class="left-container-arrow"></span>
+        </div>
+    </div>
+
+    <div class="container right-container">
+        <div class="year-circle">2015</div>
+        <div class="text-box">
+            <h2>Award Recognition</h2>
+            <small>2015</small>
+            <p>Won the “Best Event Planning Company” award at the local business awards, highlighting our commitment to excellence.</p>
+            <span class="right-container-arrow"></span>
+        </div>
+    </div>
+
+    <div class="container left-container">
+        <div class="year-circle">2020</div>
+        <div class="text-box">
+            <h2>Strategic Partnerships</h2>
+            <small>2020</small>
+            <p>Established partnerships with top vendors and venues, enhancing our service offerings and event quality.</p>
+            <span class="left-container-arrow"></span>
+        </div>
+    </div>
+
+    <div class="container right-container">
+        <div class="year-circle">2024</div>
+        <div class="text-box">
+            <h2> 18th Anniversary</h2>
+            <small>2024</small>
+            <p>Celebrated our 18th anniversary with a special event showcasing our journey and accomplishments, thanking our clients and partners for their support.</p>
+            <span class="right-container-arrow"></span>
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<!-- Placeholder for footer -->
+<div id="footer"></div> 
+
+
+<script>
+    async function loadContent() {
+        const headerResponse = await fetch("header.html");
+        const footerResponse = await fetch("footer.html");
+        document.getElementById("header").innerHTML = await headerResponse.text();
+        document.getElementById("footer").innerHTML = await footerResponse.text();
+    }
+    loadContent();
+</script>
+
+<script>
+    // Intersection Observer for animation in About Section
+    document.addEventListener("DOMContentLoaded", () => {
+        const aboutObserverOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.5
+        };
+    
+        const aboutObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target.querySelector('.about-image');
+                    const text = entry.target.querySelector('.text-content');
+                    if (entry.target.classList.contains('reverse')) {
+                        text.classList.add('animate-left');
+                        img.classList.add('animate-right');
+                    } else {
+                        img.classList.add('animate-left');
+                        text.classList.add('animate-right');
+                    }
+                    aboutObserver.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, aboutObserverOptions);
+    
+        document.querySelectorAll('.about-section').forEach(section => {
+            aboutObserver.observe(section);
+        });
+    });
+    
+    // Timeline animation using Intersection Observer
+    document.addEventListener("DOMContentLoaded", () => {
+        const timelineObserverOptions = {
+            root: null,
+            threshold: 0.5
+        };
+    
+        const timelineObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                    timelineObserver.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, timelineObserverOptions);
+    
+        document.querySelectorAll('.timeline .container').forEach(container => {
+            timelineObserver.observe(container);
+        });
+    });
+    </script>
+
+    <script>
+    // Throttle function to limit scroll event firing rate
+    function throttle(func, limit) {
+        let lastFunc;
+        let lastRan;
+        return function() {
+            const context = this;
+            const args = arguments;
+            if (!lastRan) {
+                func.apply(context, args);
+                lastRan = Date.now();
+            } else {
+                clearTimeout(lastFunc);
+                lastFunc = setTimeout(function() {
+                    if ((Date.now() - lastRan) >= limit) {
+                        func.apply(context, args);
+                        lastRan = Date.now();
+                    }
+                }, limit - (Date.now() - lastRan));
+            }
+        };
+    }
+
+    // Modified scroll function with a throttle
+    window.addEventListener("scroll", throttle(function() {
+        const header = document.querySelector(".header");
+        if (window.scrollY > 50) { // Adjust as needed for sensitivity
+            header.classList.add("header-scrolled");
+        } else {
+            header.classList.remove("header-scrolled");
+        }
+    }, 200)); // Adjust throttle time as needed
+</script>
+
+    
+
+</body>
+</html>
